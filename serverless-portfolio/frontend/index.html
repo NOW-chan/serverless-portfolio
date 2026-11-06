@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serverless Portfolio</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    max-width: 42rem; margin: 0 auto; padding: 3rem 1.5rem; line-height: 1.7;
+  }
+  h1 { font-size: 1.6rem; letter-spacing: -0.01em; }
+  .stack { border: 1px solid currentColor; border-radius: 8px; padding: 1rem 1.25rem; opacity: .85; }
+  .count { font-variant-numeric: tabular-nums; font-size: 2.5rem; font-weight: 700; }
+  button { font: inherit; padding: .5rem 1rem; border-radius: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <h1>Serverless Portfolio</h1>
+  <p>S3 + CloudFront + API Gateway + Lambda + DynamoDB を Terraform で構築し、GitHub Actions (OIDC) から自動デプロイしています。</p>
+
+  <div class="stack">
+    <p>訪問回数</p>
+    <p class="count" id="count">–</p>
+    <button id="inc">カウントアップ</button>
+  </div>
+
+  <script>
+    const el = document.getElementById("count");
+
+    async function call(method) {
+      try {
+        const res = await fetch("/api/visits", { method });
+        const data = await res.json();
+        el.textContent = data.count;
+      } catch (e) {
+        el.textContent = "error";
+      }
+    }
+
+    call("GET");
+    document.getElementById("inc").addEventListener("click", () => call("POST"));
+  </script>
+</body>
+</html>
