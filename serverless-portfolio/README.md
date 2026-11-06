@@ -1,6 +1,6 @@
 # Serverless Portfolio — AWS サーバーレス基盤 (Terraform + GitHub Actions)
 
-> **公開 URL**: https://xxxxxxxx.cloudfront.net  ← apply 後に差し替える
+> **公開 URL**: [https://xxxxxxxx.cloudfront.net](https://d2pztvu17968yn.cloudfront.net)  ← apply 後に差し替える
 > **月額コスト実績**: 約 $0.xx（Cost Explorer のスクリーンショットを `docs/` に置く）
 
 静的サイトと API を、すべて Terraform でコード化し、GitHub Actions から
